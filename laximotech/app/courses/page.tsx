@@ -50,16 +50,18 @@ export default function CoursesPage() {
                     <Link href="/career-paths">Career Paths</Link>
                     <Link href="/blog">Blog</Link>
                 </div>
-                {user ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <Link href="/dashboard" style={{ color: '#ffffffcc', fontSize: '14px', textDecoration: 'none' }}>Dashboard</Link>
-                        <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
-                        <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}>Logout</button>
-                    </div>
-                ) : (
-                    <Link href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</Link>
-                )}
-                <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {user ? (
+                        <>
+                            <Link href="/dashboard" style={{ color: '#ffffffcc', fontSize: '14px', textDecoration: 'none' }}>Dashboard</Link>
+                            <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
+                            <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}>Logout</button>
+                        </>
+                    ) : (
+                        <Link href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</Link>
+                    )}
+                    <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
+                </div>
             </nav>
 
             {/* PAGE HEADER */}
