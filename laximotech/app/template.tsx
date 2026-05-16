@@ -1,8 +1,26 @@
 "use client";
+import { useEffect, useRef } from "react";
 
 export default function Template({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(12px)";
+    el.style.transition = "none";
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      });
+    });
+  }, []);
+
   return (
-    <div className="page-transition">
+    <div ref={ref}>
       {children}
     </div>
   );
