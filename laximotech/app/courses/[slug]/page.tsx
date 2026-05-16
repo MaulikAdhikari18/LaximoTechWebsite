@@ -11,6 +11,12 @@ export default function CourseDetailPage() {
     const [enrolled, setEnrolled] = useState(false);
     const [enrolling, setEnrolling] = useState(false);
     const [enrollMsg, setEnrollMsg] = useState("");
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("user");
+        if (stored) setUser(JSON.parse(stored));
+    }, []);
 
     useEffect(() => {
         if (!slug) return;
@@ -73,14 +79,24 @@ export default function CourseDetailPage() {
 
             {/* NAVBAR */}
             <nav className="lx-nav">
-                <a href="/" className="lx-logo">laximotech<span>.</span>ai</a>
+                <Link href="/" className="lx-logo">laximotech<span>.</span>ai</Link>
                 <div className="lx-navlinks">
-                    <a href="/courses" style={{ color: '#FF6B00' }}>Courses</a>
-                    <a href="/career-paths">Career Paths</a>
-                    <a href="/blog">Blog</a>
-                    <a href="#">Login</a>
+                    <Link href="/courses" style={{ color: '#FF6B00' }}>Courses</Link>
+                    <Link href="/career-paths">Career Paths</Link>
+                    <Link href="/blog">Blog</Link>
                 </div>
-                <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {user ? (
+                        <>
+                            <Link href="/dashboard" style={{ color: '#ffffffcc', fontSize: '14px', textDecoration: 'none' }}>Dashboard</Link>
+                            <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
+                            <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}>Logout</button>
+                        </>
+                    ) : (
+                        <Link href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</Link>
+                    )}
+                    <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
+                </div>
             </nav>
 
             {/* COURSE HERO */}
@@ -88,9 +104,9 @@ export default function CourseDetailPage() {
                 <div style={{ flex: 1 }}>
                     {/* Breadcrumb */}
                     <div style={{ fontSize: '13px', color: '#D0E8F5', marginBottom: '16px' }}>
-                        <a href="/" style={{ color: '#D0E8F5', textDecoration: 'none' }}>Home</a>
+                        <Link href="/" style={{ color: '#D0E8F5', textDecoration: 'none' }}>Home</Link>
                         {' › '}
-                        <a href="/courses" style={{ color: '#D0E8F5', textDecoration: 'none' }}>Courses</a>
+                        <Link href="/courses" style={{ color: '#D0E8F5', textDecoration: 'none' }}>Courses</Link>
                         {' › '}
                         <span style={{ color: '#fff' }}>{course.title}</span>
                     </div>
