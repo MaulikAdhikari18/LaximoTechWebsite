@@ -77,21 +77,24 @@ export default function CareerPathsPage() {
     <main>
       {/* NAVBAR */}
       <nav className="lx-nav">
-        <a href="/" className="lx-logo">laximotech<span>.</span>ai</a>
+        <Link href="/" className="lx-logo">laximotech<span>.</span>ai</Link>
         <div className="lx-navlinks">
-          <a href="/courses">Courses</a>
-          <a href="/career-paths" style={{color:'#FF6B00'}}>Career Paths</a>
-          <a href="/blog">Blog</a>
+          <Link href="/courses">Courses</Link>
+          <Link href="/career-paths" style={{color:'#FF6B00'}}>Career Paths</Link>
+          <Link href="/blog">Blog</Link>
         </div>
-        {user ? (
-          <div style={{display:'flex',alignItems:'center',gap:'12px'}}>
-            <a href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</a>
-            <span style={{color:'#fff',fontSize:'14px'}}>👋 {user.name}</span>
-            <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{background:'transparent',border:'1px solid #ffffff55',color:'#fff',padding:'6px 14px',borderRadius:'16px',fontSize:'13px',cursor:'pointer'}}>Logout</button>
-          </div>
-        ) : (
-          <a href="/login" style={{color:'#ffffffcc',fontSize:'15px',textDecoration:'none'}}>Login</a>
-        )}
+        <div style={{display:'flex',alignItems:'center',gap:'16px'}}>
+          {user ? (
+            <>
+              <Link href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</Link>
+              <span style={{color:'#fff',fontSize:'14px'}}>👋 {user.name}</span>
+              <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{background:'transparent',border:'1px solid #ffffff55',color:'#fff',padding:'6px 14px',borderRadius:'16px',fontSize:'13px',cursor:'pointer'}}>Logout</button>
+            </>
+          ) : (
+            <Link href="/login" style={{color:'#ffffffcc',fontSize:'15px',textDecoration:'none'}}>Login</Link>
+          )}
+          <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
+        </div>
       </nav>
 
       {/* HEADER */}
@@ -150,11 +153,11 @@ export default function CareerPathsPage() {
                   <div style={{fontSize:'12px',color:'#999'}}>Total investment</div>
                   <div style={{fontFamily:'Poppins',fontWeight:700,fontSize:'18px',color:path.color}}>₹1,995 <span style={{fontSize:'12px',color:'#999',fontWeight:400,textDecoration:'line-through'}}>₹1,00,000+</span></div>
                 </div>
-                <a href="/courses">
+                <Link href="/courses">
                   <button style={{background:path.color,color:'#fff',border:'none',padding:'10px 22px',borderRadius:'20px',fontSize:'13px',fontWeight:700,cursor:'pointer'}}>
                     Start Path →
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           ))}
