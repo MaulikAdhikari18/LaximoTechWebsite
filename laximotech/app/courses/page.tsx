@@ -44,22 +44,22 @@ export default function CoursesPage() {
 
             {/* NAVBAR */}
             <nav className="lx-nav">
-                <a href="/" className="lx-logo">laximotech<span>.</span>ai</a>
+                <Link href="/" className="lx-logo">laximotech<span>.</span>ai</Link>
                 <div className="lx-navlinks">
-                    <a href="/courses" style={{ color: '#FF6B00' }}>Courses</a>
-                    <a href="/career-paths">Career Paths</a>
-                    <a href="/blog">Blog</a>
+                    <Link href="/courses" style={{ color: '#FF6B00' }}>Courses</Link>
+                    <Link href="/career-paths">Career Paths</Link>
+                    <Link href="/blog">Blog</Link>
                 </div>
                 {user ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <a href="/dashboard" style={{ color: '#ffffffcc', fontSize: '14px', textDecoration: 'none' }}>Dashboard</a>
+                        <Link href="/dashboard" style={{ color: '#ffffffcc', fontSize: '14px', textDecoration: 'none' }}>Dashboard</Link>
                         <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
                         <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}>Logout</button>
                     </div>
                 ) : (
-                    <a href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</a>
+                    <Link href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</Link>
                 )}
-                <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
+                <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
             </nav>
 
             {/* PAGE HEADER */}
@@ -121,7 +121,7 @@ export default function CoursesPage() {
                 ) : (
                     <div className="lx-courses-grid">
                         {filtered.map((course: any, i: number) => (
-                            <a href={`/courses/${course.slug}`} style={{ textDecoration: 'none', color: 'inherit' }} key={i}>
+                            <Link href={`/courses/${course.slug}`} style={{ textDecoration: 'none', color: 'inherit' }} key={i}>
                                 <div className="lx-course-card">
                                     <div className="lx-course-thumb">🎓</div>
                                     <span className="lx-course-badge">₹{course.price}</span>
@@ -140,7 +140,7 @@ export default function CoursesPage() {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 )}
