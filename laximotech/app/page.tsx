@@ -23,27 +23,24 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav className="lx-nav">
-        <div className="lx-logo">laximotech<span>.</span>ai</div>
+        <Link href="/" className="lx-logo">laximotech<span>.</span>ai</Link>
         <div className="lx-navlinks">
-          <Link href="#">Courses</Link>
+          <Link href="/courses">Courses</Link>
           <Link href="/career-paths">Career Paths</Link>
           <Link href="/blog">Blog</Link>
-          {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Link href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</Link>
-              <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
-              <button
-                onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }}
-                style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <Link href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</Link>
-          )}
         </div>
-        <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
+        <div style={{display:'flex',alignItems:'center',gap:'16px'}}>
+          {user ? (
+            <>
+              <Link href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</Link>
+              <span style={{color:'#fff',fontSize:'14px'}}>👋 {user.name}</span>
+              <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{background:'transparent',border:'1px solid #ffffff55',color:'#fff',padding:'6px 14px',borderRadius:'16px',fontSize:'13px',cursor:'pointer'}}>Logout</button>
+            </>
+          ) : (
+            <Link href="/login" style={{color:'#ffffffcc',fontSize:'15px',textDecoration:'none'}}>Login</Link>
+          )}
+          <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
+        </div>
       </nav>
 
       {/* HERO */}
@@ -52,7 +49,7 @@ export default function Home() {
           <h1>Master AI, Python &<br />Data Science<br /><span>For Just ₹399</span></h1>
           <p>Internationally Certified. 100% Online. Built for India.</p>
           <div className="lx-hero-btns">
-            <button className="lx-btn-primary">Start Learning — ₹399</button>
+            <Link href="/courses"><button className="lx-btn-primary">Start Learning — ₹399</button></Link>
             <button className="lx-btn-secondary">Watch Free Demo</button>
           </div>
           <div className="lx-stats">
@@ -89,27 +86,29 @@ export default function Home() {
         <div className="lx-section-sub">Handpicked to get you job-ready, fast.</div>
         <div className="lx-courses-grid">
           {courses.length === 0 ? (
-            <p style={{ color: '#888' }}>Loading courses...</p>
+            <p style={{color:'#888'}}>Loading courses...</p>
           ) : (
             courses.map((course: any, i: number) => (
-              <div className="lx-course-card" key={i}>
-                <div className="lx-course-thumb">🎓</div>
-                <span className="lx-course-badge">₹{course.price}</span>
-                <div className="lx-course-body">
-                  <div className="lx-course-title">{course.title}</div>
-                  <div className="lx-course-meta">{course.durationHours} hrs · {course.level} · {course.language}</div>
-                  <div className="lx-course-stars">★★★★★ <span style={{ color: '#888' }}>{course.rating} ({course.totalStudents} students)</span></div>
-                  <div className="lx-course-footer">
-                    <span className="lx-price">₹{course.price}</span>
-                    <button className="lx-enroll-btn">Enroll</button>
+              <Link href={`/courses/${course.slug}`} style={{textDecoration:'none',color:'inherit'}} key={i}>
+                <div className="lx-course-card">
+                  <div className="lx-course-thumb">🎓</div>
+                  <span className="lx-course-badge">₹{course.price}</span>
+                  <div className="lx-course-body">
+                    <div className="lx-course-title">{course.title}</div>
+                    <div className="lx-course-meta">{course.durationHours} hrs · {course.level} · {course.language}</div>
+                    <div className="lx-course-stars">★★★★★ <span style={{color:'#888'}}>{course.rating} ({course.totalStudents} students)</span></div>
+                    <div className="lx-course-footer">
+                      <span className="lx-price">₹{course.price}</span>
+                      <button className="lx-enroll-btn">Enroll</button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))
           )}
         </div>
         <div className="lx-view-all">
-          <button className="lx-btn-outline">View All 40+ Courses</button>
+          <Link href="/courses"><button className="lx-btn-outline">View All 40+ Courses</button></Link>
         </div>
       </section>
 
@@ -141,30 +140,38 @@ export default function Home() {
         <div className="lx-section-title">Career Paths</div>
         <div className="lx-section-sub">Follow a structured path — from beginner to job-ready.</div>
         <div className="lx-paths-grid">
-          <div className="lx-path-card">
-            <div className="lx-path-icon blue">🤖</div>
-            <h3>AI / ML Engineer</h3>
-            <div className="salary">₹12–80 LPA</div>
-            <div className="courses-count">5 courses · ~54 weeks</div>
-          </div>
-          <div className="lx-path-card">
-            <div className="lx-path-icon orange">📊</div>
-            <h3>Data Analyst</h3>
-            <div className="salary">₹4–25 LPA</div>
-            <div className="courses-count">5 courses · ~29 weeks</div>
-          </div>
-          <div className="lx-path-card">
-            <div className="lx-path-icon green">💻</div>
-            <h3>Full Stack Developer</h3>
-            <div className="salary">₹5–35 LPA</div>
-            <div className="courses-count">5 courses · ~42 weeks</div>
-          </div>
-          <div className="lx-path-card">
-            <div className="lx-path-icon purple">🔧</div>
-            <h3>IoT / Robotics Engineer</h3>
-            <div className="salary">₹5–40 LPA</div>
-            <div className="courses-count">5 courses · ~42 weeks</div>
-          </div>
+          <Link href="/career-paths" style={{textDecoration:'none'}}>
+            <div className="lx-path-card">
+              <div className="lx-path-icon blue">🤖</div>
+              <h3>AI / ML Engineer</h3>
+              <div className="salary">₹12–80 LPA</div>
+              <div className="courses-count">5 courses · ~54 weeks</div>
+            </div>
+          </Link>
+          <Link href="/career-paths" style={{textDecoration:'none'}}>
+            <div className="lx-path-card">
+              <div className="lx-path-icon orange">📊</div>
+              <h3>Data Analyst</h3>
+              <div className="salary">₹4–25 LPA</div>
+              <div className="courses-count">5 courses · ~29 weeks</div>
+            </div>
+          </Link>
+          <Link href="/career-paths" style={{textDecoration:'none'}}>
+            <div className="lx-path-card">
+              <div className="lx-path-icon green">💻</div>
+              <h3>Full Stack Developer</h3>
+              <div className="salary">₹5–35 LPA</div>
+              <div className="courses-count">5 courses · ~42 weeks</div>
+            </div>
+          </Link>
+          <Link href="/career-paths" style={{textDecoration:'none'}}>
+            <div className="lx-path-card">
+              <div className="lx-path-icon purple">🔧</div>
+              <h3>IoT / Robotics Engineer</h3>
+              <div className="salary">₹5–40 LPA</div>
+              <div className="courses-count">5 courses · ~42 weeks</div>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -183,14 +190,14 @@ export default function Home() {
           <div className="lx-testi-card">
             <div className="lx-testi-quote">&ldquo;Before laximotech.ai I could not afford any online course. The Python + Data Science path changed my career. Now I am a data analyst at MNC.&rdquo;</div>
             <div className="lx-testi-author">
-              <div className="lx-avatar" style={{ background: '#117A65' }}>PS</div>
+              <div className="lx-avatar" style={{background:'#117A65'}}>PS</div>
               <div><div className="lx-author-name">Priya Sharma</div><div className="lx-author-city">Lucknow, UP · Data Analyst</div></div>
             </div>
           </div>
           <div className="lx-testi-card">
             <div className="lx-testi-quote">&ldquo;My son started the Robotics course at age 9. He built his first robot at 10. The Hindi explanation makes it so easy. Best ₹399 I ever spent.&rdquo;</div>
             <div className="lx-testi-author">
-              <div className="lx-avatar" style={{ background: '#FF6B00' }}>RM</div>
+              <div className="lx-avatar" style={{background:'#FF6B00'}}>RM</div>
               <div><div className="lx-author-name">Ravi Mishra</div><div className="lx-author-city">Greater Noida · Parent</div></div>
             </div>
           </div>
@@ -206,7 +213,7 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="lx-faq">
-        <div className="lx-section-title" style={{ textAlign: 'center' }}>Frequently Asked Questions</div>
+        <div className="lx-section-title" style={{textAlign:'center'}}>Frequently Asked Questions</div>
         <div className="lx-faq-list">
           {[
             { q: "Is the certificate valid for jobs?", a: "Yes. Every certificate has a unique verifiable ID that employers can check at laximotech.ai/verify. It is shareable on LinkedIn." },
@@ -229,16 +236,16 @@ export default function Home() {
           <div>
             <div className="lx-footer-brand">laximotech<span>.</span>ai</div>
             <div className="lx-footer-tagline">India&apos;s most affordable AI &amp; Tech learning platform. ₹399 per course. Real skills. Real certificates.</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>📍 Greater Noida West, UP, India</div>
+            <div style={{fontSize:'12px',color:'#666'}}>📍 Greater Noida West, UP, India</div>
           </div>
           <div>
             <h4>Courses</h4>
             <ul>
-              <li><a href="#">AI &amp; Machine Learning</a></li>
-              <li><a href="#">Data Science</a></li>
-              <li><a href="#">Python</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Robotics &amp; IoT</a></li>
+              <li><Link href="/courses">AI &amp; Machine Learning</Link></li>
+              <li><Link href="/courses">Data Science</Link></li>
+              <li><Link href="/courses">Python</Link></li>
+              <li><Link href="/courses">Web Development</Link></li>
+              <li><Link href="/courses">Robotics &amp; IoT</Link></li>
             </ul>
           </div>
           <div>
@@ -246,14 +253,14 @@ export default function Home() {
             <ul>
               <li><a href="#">About Us</a></li>
               <li><a href="#">Instructors</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><Link href="/blog">Blog</Link></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
           <div>
             <h4>Support</h4>
             <ul>
-              <li><a href="#">FAQ</a></li>
+              <li><Link href="/blog">FAQ</Link></li>
               <li><a href="#">Verify Certificate</a></li>
               <li><a href="#">Refund Policy</a></li>
               <li><a href="#">Privacy Policy</a></li>
