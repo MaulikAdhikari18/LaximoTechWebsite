@@ -9,7 +9,7 @@ export default function Home() {
     const stored = localStorage.getItem("user");
     if (stored) setUser(JSON.parse(stored));
   }, []);
-  
+
   useEffect(() => {
     fetch("http://localhost:8080/api/courses")
       .then((res) => res.json())
@@ -29,6 +29,7 @@ export default function Home() {
           <a href="#">Blog</a>
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <a href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</a>
               <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
               <button
                 onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }}
