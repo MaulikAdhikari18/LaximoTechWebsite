@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [courses, setCourses] = useState<any[]>([]);
+  const [user, setUser] = useState<any>(null);
 
+  useEffect(() => {
+    const stored = localStorage.getItem("user");
+    if (stored) setUser(JSON.parse(stored));
+  }, []);
+  
   useEffect(() => {
     fetch("http://localhost:8080/api/courses")
       .then((res) => res.json())
@@ -21,7 +27,19 @@ export default function Home() {
           <a href="#">Courses</a>
           <a href="#">Career Paths</a>
           <a href="#">Blog</a>
-          <a href="/login">Login</a>
+          {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
+              <button
+                onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }}
+                style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <a href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</a>
+          )}
         </div>
         <button className="lx-btn-nav">Enroll Now</button>
       </nav>
@@ -69,7 +87,7 @@ export default function Home() {
         <div className="lx-section-sub">Handpicked to get you job-ready, fast.</div>
         <div className="lx-courses-grid">
           {courses.length === 0 ? (
-            <p style={{color:'#888'}}>Loading courses...</p>
+            <p style={{ color: '#888' }}>Loading courses...</p>
           ) : (
             courses.map((course: any, i: number) => (
               <div className="lx-course-card" key={i}>
@@ -78,7 +96,7 @@ export default function Home() {
                 <div className="lx-course-body">
                   <div className="lx-course-title">{course.title}</div>
                   <div className="lx-course-meta">{course.durationHours} hrs · {course.level} · {course.language}</div>
-                  <div className="lx-course-stars">★★★★★ <span style={{color:'#888'}}>{course.rating} ({course.totalStudents} students)</span></div>
+                  <div className="lx-course-stars">★★★★★ <span style={{ color: '#888' }}>{course.rating} ({course.totalStudents} students)</span></div>
                   <div className="lx-course-footer">
                     <span className="lx-price">₹{course.price}</span>
                     <button className="lx-enroll-btn">Enroll</button>
@@ -163,14 +181,14 @@ export default function Home() {
           <div className="lx-testi-card">
             <div className="lx-testi-quote">&ldquo;Before laximotech.ai I could not afford any online course. The Python + Data Science path changed my career. Now I am a data analyst at MNC.&rdquo;</div>
             <div className="lx-testi-author">
-              <div className="lx-avatar" style={{background:'#117A65'}}>PS</div>
+              <div className="lx-avatar" style={{ background: '#117A65' }}>PS</div>
               <div><div className="lx-author-name">Priya Sharma</div><div className="lx-author-city">Lucknow, UP · Data Analyst</div></div>
             </div>
           </div>
           <div className="lx-testi-card">
             <div className="lx-testi-quote">&ldquo;My son started the Robotics course at age 9. He built his first robot at 10. The Hindi explanation makes it so easy. Best ₹399 I ever spent.&rdquo;</div>
             <div className="lx-testi-author">
-              <div className="lx-avatar" style={{background:'#FF6B00'}}>RM</div>
+              <div className="lx-avatar" style={{ background: '#FF6B00' }}>RM</div>
               <div><div className="lx-author-name">Ravi Mishra</div><div className="lx-author-city">Greater Noida · Parent</div></div>
             </div>
           </div>
@@ -186,7 +204,7 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="lx-faq">
-        <div className="lx-section-title" style={{textAlign:'center'}}>Frequently Asked Questions</div>
+        <div className="lx-section-title" style={{ textAlign: 'center' }}>Frequently Asked Questions</div>
         <div className="lx-faq-list">
           {[
             { q: "Is the certificate valid for jobs?", a: "Yes. Every certificate has a unique verifiable ID that employers can check at laximotech.ai/verify. It is shareable on LinkedIn." },
@@ -209,7 +227,7 @@ export default function Home() {
           <div>
             <div className="lx-footer-brand">laximotech<span>.</span>ai</div>
             <div className="lx-footer-tagline">India&apos;s most affordable AI &amp; Tech learning platform. ₹399 per course. Real skills. Real certificates.</div>
-            <div style={{fontSize:'12px',color:'#666'}}>📍 Greater Noida West, UP, India</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>📍 Greater Noida West, UP, India</div>
           </div>
           <div>
             <h4>Courses</h4>
