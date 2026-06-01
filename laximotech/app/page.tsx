@@ -21,7 +21,7 @@ export default function Home() {
           <a href="#">Courses</a>
           <a href="#">Career Paths</a>
           <a href="#">Blog</a>
-          <a href="#">Login</a>
+          <a href="/login">Login</a>
         </div>
         <button className="lx-btn-nav">Enroll Now</button>
       </nav>
