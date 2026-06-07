@@ -23,4 +23,9 @@ public class CourseController {
     public Course getCourseById(@PathVariable Long id) {
         return courseService.getCourseById(id);
     }
+
+    @GetMapping("/slug/{slug}")
+    public Course getCourseBySlug(@PathVariable String slug) {
+        return courseService.getCourseBySlug(slug);
+    }
 }

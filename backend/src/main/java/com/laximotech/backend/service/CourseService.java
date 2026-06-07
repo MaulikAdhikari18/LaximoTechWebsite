@@ -18,4 +18,8 @@ public class CourseService {
     public Course getCourseById(Long id) {
         return courseRepository.findById(id).orElse(null);
     }
+
+    public Course getCourseBySlug(String slug) {
+        return courseRepository.findBySlug(slug).orElse(null);
+    }
 }
