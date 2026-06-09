@@ -1,4 +1,16 @@
+"use client";
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [courses, setCourses] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/courses")
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch(() => setCourses([]));
+  }, []);
+
   return (
     <main>
 
@@ -56,28 +68,25 @@ export default function Home() {
         <div className="lx-section-title">Featured Courses</div>
         <div className="lx-section-sub">Handpicked to get you job-ready, fast.</div>
         <div className="lx-courses-grid">
-          {[
-            { title: "AI for Absolute Beginners", hrs: "20", level: "All levels", rating: "4.9", reviews: "2.1k" },
-            { title: "Python Foundation", hrs: "40", level: "Beginner", rating: "4.8", reviews: "3.4k" },
-            { title: "Data Science with Python", hrs: "48", level: "Intermediate", rating: "4.9", reviews: "1.8k" },
-            { title: "Machine Learning Fundamentals", hrs: "40", level: "Intermediate", rating: "4.7", reviews: "1.2k" },
-            { title: "Cybersecurity Fundamentals", hrs: "24", level: "Beginner", rating: "4.8", reviews: "980" },
-            { title: "Robotics for Beginners", hrs: "48", level: "Ages 6–10", rating: "5.0", reviews: "760" },
-          ].map((course, i) => (
-            <div className="lx-course-card" key={i}>
-              <div className="lx-course-thumb">🎓</div>
-              <span className="lx-course-badge">₹399</span>
-              <div className="lx-course-body">
-                <div className="lx-course-title">{course.title}</div>
-                <div className="lx-course-meta">{course.hrs} hrs · {course.level} · Hindi + English</div>
-                <div className="lx-course-stars">★★★★★ <span style={{color:'#888'}}>{course.rating} ({course.reviews})</span></div>
-                <div className="lx-course-footer">
-                  <span className="lx-price">₹399</span>
-                  <button className="lx-enroll-btn">Enroll</button>
+          {courses.length === 0 ? (
+            <p style={{color:'#888'}}>Loading courses...</p>
+          ) : (
+            courses.map((course: any, i: number) => (
+              <div className="lx-course-card" key={i}>
+                <div className="lx-course-thumb">🎓</div>
+                <span className="lx-course-badge">₹{course.price}</span>
+                <div className="lx-course-body">
+                  <div className="lx-course-title">{course.title}</div>
+                  <div className="lx-course-meta">{course.durationHours} hrs · {course.level} · {course.language}</div>
+                  <div className="lx-course-stars">★★★★★ <span style={{color:'#888'}}>{course.rating} ({course.totalStudents} students)</span></div>
+                  <div className="lx-course-footer">
+                    <span className="lx-price">₹{course.price}</span>
+                    <button className="lx-enroll-btn">Enroll</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
         <div className="lx-view-all">
           <button className="lx-btn-outline">View All 40+ Courses</button>
@@ -145,21 +154,21 @@ export default function Home() {
         <div className="lx-section-sub">Real students. Real results.</div>
         <div className="lx-testi-grid">
           <div className="lx-testi-card">
-            <div className="lx-testi-quote">"I completed the AI course for ₹399 and landed a job at a Bengaluru startup within 3 months. The certificate was verified on the spot."</div>
+            <div className="lx-testi-quote">&ldquo;I completed the AI course for ₹399 and landed a job at a Bengaluru startup within 3 months. The certificate was verified on the spot.&rdquo;</div>
             <div className="lx-testi-author">
               <div className="lx-avatar">AK</div>
               <div><div className="lx-author-name">Ankit Kumar</div><div className="lx-author-city">Meerut, UP · AI Engineer</div></div>
             </div>
           </div>
           <div className="lx-testi-card">
-            <div className="lx-testi-quote">"Before laximotech.ai I could not afford any online course. The Python + Data Science path changed my career. Now I am a data analyst at MNC."</div>
+            <div className="lx-testi-quote">&ldquo;Before laximotech.ai I could not afford any online course. The Python + Data Science path changed my career. Now I am a data analyst at MNC.&rdquo;</div>
             <div className="lx-testi-author">
               <div className="lx-avatar" style={{background:'#117A65'}}>PS</div>
               <div><div className="lx-author-name">Priya Sharma</div><div className="lx-author-city">Lucknow, UP · Data Analyst</div></div>
             </div>
           </div>
           <div className="lx-testi-card">
-            <div className="lx-testi-quote">"My son started the Robotics course at age 9. He built his first robot at 10. The Hindi explanation makes it so easy. Best ₹399 I ever spent."</div>
+            <div className="lx-testi-quote">&ldquo;My son started the Robotics course at age 9. He built his first robot at 10. The Hindi explanation makes it so easy. Best ₹399 I ever spent.&rdquo;</div>
             <div className="lx-testi-author">
               <div className="lx-avatar" style={{background:'#FF6B00'}}>RM</div>
               <div><div className="lx-author-name">Ravi Mishra</div><div className="lx-author-city">Greater Noida · Parent</div></div>
@@ -171,7 +180,7 @@ export default function Home() {
       {/* DEMO CTA */}
       <section className="lx-demo">
         <h2>Come Learn in Person — Free Demo Class</h2>
-        <p>Greater Noida West students: Visit our centre for a FREE Robotics & AI demo class.</p>
+        <p>Greater Noida West students: Visit our centre for a FREE Robotics &amp; AI demo class.</p>
         <button className="lx-btn-white">Book Free Demo</button>
       </section>
 
@@ -199,17 +208,17 @@ export default function Home() {
         <div className="lx-footer-grid">
           <div>
             <div className="lx-footer-brand">laximotech<span>.</span>ai</div>
-            <div className="lx-footer-tagline">India&apos;s most affordable AI & Tech learning platform. ₹399 per course. Real skills. Real certificates.</div>
+            <div className="lx-footer-tagline">India&apos;s most affordable AI &amp; Tech learning platform. ₹399 per course. Real skills. Real certificates.</div>
             <div style={{fontSize:'12px',color:'#666'}}>📍 Greater Noida West, UP, India</div>
           </div>
           <div>
             <h4>Courses</h4>
             <ul>
-              <li><a href="#">AI & Machine Learning</a></li>
+              <li><a href="#">AI &amp; Machine Learning</a></li>
               <li><a href="#">Data Science</a></li>
               <li><a href="#">Python</a></li>
               <li><a href="#">Web Development</a></li>
-              <li><a href="#">Robotics & IoT</a></li>
+              <li><a href="#">Robotics &amp; IoT</a></li>
             </ul>
           </div>
           <div>
