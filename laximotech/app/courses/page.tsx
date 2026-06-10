@@ -125,23 +125,23 @@ export default function CoursesPage() {
                                         </div>
                                     </div>
                                 </div>
-                                </a>
-            ))}
-                            </div>
-                        )}
-                    </section>
-
-      {/* FOOTER */}
-                <footer className="lx-footer">
-                    <div className="lx-footer-bottom" style={{ borderTop: 'none', paddingTop: '30px' }}>
-                        <p>© 2025 laximotech.ai — Laximo Tech Solutions. All rights reserved.</p>
-                        <div className="lx-payment-badges">
-                            <span className="lx-pay-badge">UPI</span>
-                            <span className="lx-pay-badge">Razorpay</span>
-                            <span className="lx-pay-badge">Cards</span>
-                        </div>
+                            </a>
+                        ))}
                     </div>
-                </footer>
+                )}
+            </section>
+
+            {/* FOOTER */}
+            <footer className="lx-footer">
+                <div className="lx-footer-bottom" style={{ borderTop: 'none', paddingTop: '30px' }}>
+                    <p>© 2025 laximotech.ai — Laximo Tech Solutions. All rights reserved.</p>
+                    <div className="lx-payment-badges">
+                        <span className="lx-pay-badge">UPI</span>
+                        <span className="lx-pay-badge">Razorpay</span>
+                        <span className="lx-pay-badge">Cards</span>
+                    </div>
+                </div>
+            </footer>
 
         </main>
     );
