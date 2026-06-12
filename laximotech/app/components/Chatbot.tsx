@@ -112,7 +112,7 @@ export default function Chatbot() {
         onClick={() => setOpen(!open)}
         style={{
           position: 'fixed', bottom: '28px', right: '28px', zIndex: 1000,
-          width: '60px', height: '60px', borderRadius: '50%',
+          width: '80px', height: '80px', borderRadius: '50%',
           background: '#1F4E79', border: 'none', cursor: 'pointer',
           boxShadow: '0 4px 20px rgba(31,78,121,0.4)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -127,7 +127,7 @@ export default function Chatbot() {
       {open && (
         <div style={{
           position: 'fixed', bottom: '100px', right: '28px', zIndex: 999,
-          width: '380px', height: '540px', background: '#fff',
+          width: '680px', height: '820px', background: '#fff',
           borderRadius: '20px', boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
           display: 'flex', flexDirection: 'column', overflow: 'hidden',
           border: '1px solid #e0eaf3'
@@ -140,7 +140,7 @@ export default function Chatbot() {
             </div>
             <div>
               <div style={{ fontFamily: 'Poppins', fontWeight: 700, fontSize: '15px', color: '#fff' }}>Laxi — AI Assistant</div>
-              <div style={{ fontSize: '12px', color: '#A8D5F5', display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <div style={{ fontSize: '20px', color: '#A8D5F5', display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#4ADE80', display: 'inline-block' }}></span>
                 Online · laximotech.ai
               </div>
@@ -155,7 +155,7 @@ export default function Chatbot() {
                   maxWidth: '78%', padding: '10px 14px', borderRadius: msg.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
                   background: msg.role === 'user' ? '#1F4E79' : '#fff',
                   color: msg.role === 'user' ? '#fff' : '#1A1A2E',
-                  fontSize: '14px', lineHeight: '1.6',
+                  fontSize: '22px', lineHeight: '1.6',
                   border: msg.role === 'assistant' ? '1px solid #e0eaf3' : 'none',
                   boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
                 }}>
@@ -179,7 +179,7 @@ export default function Chatbot() {
             <div style={{ padding: '8px 12px', display: 'flex', gap: '6px', flexWrap: 'wrap', borderTop: '1px solid #f0f0f0', background: '#fff' }}>
               {QUICK_QUESTIONS.map((q, i) => (
                 <button key={i} onClick={() => sendMessage(q)}
-                  style={{ background: '#F0F8FF', color: '#1F4E79', border: '1px solid #D0E8F5', borderRadius: '16px', padding: '5px 10px', fontSize: '11px', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                  style={{ background: '#F0F8FF', color: '#1F4E79', border: '1px solid #D0E8F5', borderRadius: '16px', padding: '8px 14px', fontSize: '17px', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
                   {q}
                 </button>
               ))}
@@ -193,7 +193,7 @@ export default function Chatbot() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && sendMessage()}
               placeholder="Ask me anything..."
-              style={{ flex: 1, padding: '10px 14px', borderRadius: '24px', border: '1.5px solid #D0E8F5', fontSize: '14px', outline: 'none', fontFamily: 'Inter, sans-serif' }}
+              style={{ flex: 1, padding: '16px 20px', borderRadius: '24px', border: '1.5px solid #D0E8F5', fontSize: '20px', outline: 'none', fontFamily: 'Inter, sans-serif' }}
               onFocus={e => e.target.style.borderColor = '#1F4E79'}
               onBlur={e => e.target.style.borderColor = '#D0E8F5'}
             />
