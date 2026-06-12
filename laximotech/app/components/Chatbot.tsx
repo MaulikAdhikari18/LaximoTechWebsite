@@ -89,18 +89,15 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
           messages: newMessages.map(m => ({ role: m.role, content: m.content }))
         })
       });
       const data = await res.json();
-      const reply = data.content?.[0]?.text || "Sorry, I couldn't process that. Please try again!";
+      const reply = data.reply || "Sorry, I could not process that!";
       setMessages([...newMessages, { role: "assistant", content: reply }]);
     } catch {
       setMessages([...newMessages, { role: "assistant", content: "Oops! Something went wrong. Please try again or contact us at info@laximotechsolutions.com" }]);
