@@ -47,7 +47,7 @@ export default function CoursesPage() {
                 <div className="lx-navlinks">
                     <a href="/courses" style={{ color: '#FF6B00' }}>Courses</a>
                     <a href="/career-paths">Career Paths</a>
-                    <a href="#">Blog</a>
+                    <a href="/blog">Blog</a>
                 </div>
                 {user ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

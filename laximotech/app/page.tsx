@@ -26,7 +26,7 @@ export default function Home() {
         <div className="lx-navlinks">
           <a href="#">Courses</a>
           <a href="/career-paths">Career Paths</a>
-          <a href="#">Blog</a>
+          <a href="/blog">Blog</a>
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <a href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</a>

@@ -80,7 +80,7 @@ export default function CareerPathsPage() {
         <div className="lx-navlinks">
           <a href="/courses">Courses</a>
           <a href="/career-paths" style={{color:'#FF6B00'}}>Career Paths</a>
-          <a href="#">Blog</a>
+          <a href="/blog">Blog</a>
         </div>
         {user ? (
           <div style={{display:'flex',alignItems:'center',gap:'12px'}}>

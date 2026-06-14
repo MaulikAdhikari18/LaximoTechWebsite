@@ -76,7 +76,7 @@ export default function CourseDetailPage() {
                 <div className="lx-navlinks">
                     <a href="/courses" style={{ color: '#FF6B00' }}>Courses</a>
                     <a href="/career-paths">Career Paths</a>
-                    <a href="#">Blog</a>
+                    <a href="/blog">Blog</a>
                     <a href="#">Login</a>
                 </div>
                 <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
