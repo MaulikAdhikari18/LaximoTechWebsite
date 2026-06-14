@@ -42,7 +42,7 @@ export default function Home() {
             <a href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</a>
           )}
         </div>
-        <button className="lx-btn-nav">Enroll Now</button>
+        <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
       </nav>
 
       {/* HERO */}

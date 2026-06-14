@@ -79,7 +79,7 @@ export default function CourseDetailPage() {
                     <a href="#">Blog</a>
                     <a href="#">Login</a>
                 </div>
-                <button className="lx-btn-nav">Enroll Now</button>
+                <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
             </nav>
 
             {/* COURSE HERO */}

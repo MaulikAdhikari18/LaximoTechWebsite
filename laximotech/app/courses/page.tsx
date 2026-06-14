@@ -8,6 +8,12 @@ export default function CoursesPage() {
     const [filtered, setFiltered] = useState<any[]>([]);
     const [activeCategory, setActiveCategory] = useState("All");
     const [search, setSearch] = useState("");
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("user");
+        if (stored) setUser(JSON.parse(stored));
+    }, []);
 
     useEffect(() => {
         fetch("http://localhost:8080/api/courses")
@@ -42,9 +48,17 @@ export default function CoursesPage() {
                     <a href="/courses" style={{ color: '#FF6B00' }}>Courses</a>
                     <a href="#">Career Paths</a>
                     <a href="#">Blog</a>
-                    <a href="#">Login</a>
                 </div>
-                <button className="lx-btn-nav">Enroll Now</button>
+                {user ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <a href="/dashboard" style={{ color: '#ffffffcc', fontSize: '14px', textDecoration: 'none' }}>Dashboard</a>
+                        <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
+                        <button onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }} style={{ background: 'transparent', border: '1px solid #ffffff55', color: '#fff', padding: '6px 14px', borderRadius: '16px', fontSize: '13px', cursor: 'pointer' }}>Logout</button>
+                    </div>
+                ) : (
+                    <a href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</a>
+                )}
+                <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
             </nav>
 
             {/* PAGE HEADER */}
