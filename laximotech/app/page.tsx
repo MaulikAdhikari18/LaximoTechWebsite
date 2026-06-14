@@ -25,7 +25,7 @@ export default function Home() {
         <div className="lx-logo">laximotech<span>.</span>ai</div>
         <div className="lx-navlinks">
           <a href="#">Courses</a>
-          <a href="#">Career Paths</a>
+          <a href="/career-paths">Career Paths</a>
           <a href="#">Blog</a>
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

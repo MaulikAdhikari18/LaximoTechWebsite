@@ -75,7 +75,7 @@ export default function CourseDetailPage() {
                 <a href="/" className="lx-logo">laximotech<span>.</span>ai</a>
                 <div className="lx-navlinks">
                     <a href="/courses" style={{ color: '#FF6B00' }}>Courses</a>
-                    <a href="#">Career Paths</a>
+                    <a href="/career-paths">Career Paths</a>
                     <a href="#">Blog</a>
                     <a href="#">Login</a>
                 </div>
