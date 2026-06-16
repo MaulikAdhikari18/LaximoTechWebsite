@@ -25,12 +25,12 @@ export default function Home() {
       <nav className="lx-nav">
         <div className="lx-logo">laximotech<span>.</span>ai</div>
         <div className="lx-navlinks">
-          <a href="#">Courses</a>
-          <a href="/career-paths">Career Paths</a>
-          <a href="/blog">Blog</a>
+          <Link href="#">Courses</Link>
+          <Link href="/career-paths">Career Paths</Link>
+          <Link href="/blog">Blog</Link>
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <a href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</a>
+              <Link href="/dashboard" style={{color:'#ffffffcc',fontSize:'14px',textDecoration:'none'}}>Dashboard</Link>
               <span style={{ color: '#fff', fontSize: '14px' }}>👋 {user.name}</span>
               <button
                 onClick={() => { localStorage.removeItem("token"); localStorage.removeItem("user"); setUser(null); }}
@@ -40,10 +40,10 @@ export default function Home() {
               </button>
             </div>
           ) : (
-            <a href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</a>
+            <Link href="/login" style={{ color: '#ffffffcc', fontSize: '15px', textDecoration: 'none' }}>Login</Link>
           )}
         </div>
-        <a href="/courses"><button className="lx-btn-nav">Enroll Now</button></a>
+        <Link href="/courses"><button className="lx-btn-nav">Enroll Now</button></Link>
       </nav>
 
       {/* HERO */}
