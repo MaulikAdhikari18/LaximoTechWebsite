@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const CATEGORIES = ["All", "Artificial Intelligence", "Data Science", "Programming", "Cybersecurity", "Robotics"];
