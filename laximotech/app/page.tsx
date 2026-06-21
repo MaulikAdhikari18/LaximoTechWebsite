@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function Home() {
   const [courses, setCourses] = useState<any[]>([]);
   const [user, setUser] = useState<any>(null);
+  useScrollAnimation();
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
@@ -43,7 +45,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO */}
+      {/* HERO — h1/p/btns/stats animate via CSS keyframes automatically */}
       <section className="lx-hero">
         <div className="lx-hero-left">
           <h1>Master AI, Python &<br />Data Science<br /><span>For Just ₹399</span></h1>
@@ -65,7 +67,7 @@ export default function Home() {
       </section>
 
       {/* TRUST BAR */}
-      <div className="lx-trust">
+      <div className="lx-trust lx-animate">
         <span className="lx-trust-label">Our students work at:</span>
         <div className="lx-trust-logos">
           <span>TCS</span><span>Infosys</span><span>Wipro</span>
@@ -74,7 +76,7 @@ export default function Home() {
       </div>
 
       {/* PROBLEM STATEMENT */}
-      <section className="lx-problem">
+      <section className="lx-problem lx-animate">
         <h2>Other platforms charge ₹50,000 for the same course.</h2>
         <p>We built laximotech.ai so a student in Meerut has the same chance as one in Mumbai.</p>
         <strong>₹399. Real certificate. Real skills.</strong>
@@ -82,9 +84,9 @@ export default function Home() {
 
       {/* FEATURED COURSES */}
       <section className="lx-section">
-        <div className="lx-section-title">Featured Courses</div>
-        <div className="lx-section-sub">Handpicked to get you job-ready, fast.</div>
-        <div className="lx-courses-grid">
+        <div className="lx-section-title lx-animate">Featured Courses</div>
+        <div className="lx-section-sub lx-animate">Handpicked to get you job-ready, fast.</div>
+        <div className="lx-courses-grid lx-stagger">
           {courses.length === 0 ? (
             <p style={{color:'#888'}}>Loading courses...</p>
           ) : (
@@ -107,16 +109,16 @@ export default function Home() {
             ))
           )}
         </div>
-        <div className="lx-view-all">
+        <div className="lx-view-all lx-animate">
           <Link href="/courses"><button className="lx-btn-outline">View All 40+ Courses</button></Link>
         </div>
       </section>
 
       {/* HOW IT WORKS */}
       <section className="lx-how">
-        <div className="lx-section-title">How It Works</div>
-        <div className="lx-section-sub">Go from zero to certified in 3 simple steps.</div>
-        <div className="lx-steps">
+        <div className="lx-section-title lx-animate">How It Works</div>
+        <div className="lx-section-sub lx-animate">Go from zero to certified in 3 simple steps.</div>
+        <div className="lx-steps lx-stagger">
           <div className="lx-step">
             <div className="lx-step-num">1</div>
             <h3>Choose Your Course</h3>
@@ -137,9 +139,9 @@ export default function Home() {
 
       {/* CAREER PATHS */}
       <section className="lx-section">
-        <div className="lx-section-title">Career Paths</div>
-        <div className="lx-section-sub">Follow a structured path — from beginner to job-ready.</div>
-        <div className="lx-paths-grid">
+        <div className="lx-section-title lx-animate">Career Paths</div>
+        <div className="lx-section-sub lx-animate">Follow a structured path — from beginner to job-ready.</div>
+        <div className="lx-paths-grid lx-stagger">
           <Link href="/career-paths" style={{textDecoration:'none'}}>
             <div className="lx-path-card">
               <div className="lx-path-icon blue">🤖</div>
@@ -177,9 +179,9 @@ export default function Home() {
 
       {/* TESTIMONIALS */}
       <section className="lx-testi">
-        <div className="lx-section-title">Student Success Stories</div>
-        <div className="lx-section-sub">Real students. Real results.</div>
-        <div className="lx-testi-grid">
+        <div className="lx-section-title lx-animate">Student Success Stories</div>
+        <div className="lx-section-sub lx-animate">Real students. Real results.</div>
+        <div className="lx-testi-grid lx-stagger">
           <div className="lx-testi-card">
             <div className="lx-testi-quote">&ldquo;I completed the AI course for ₹399 and landed a job at a Bengaluru startup within 3 months. The certificate was verified on the spot.&rdquo;</div>
             <div className="lx-testi-author">
@@ -205,7 +207,7 @@ export default function Home() {
       </section>
 
       {/* DEMO CTA */}
-      <section className="lx-demo">
+      <section className="lx-demo lx-animate">
         <h2>Come Learn in Person — Free Demo Class</h2>
         <p>Greater Noida West students: Visit our centre for a FREE Robotics &amp; AI demo class.</p>
         <button className="lx-btn-white">Book Free Demo</button>
@@ -213,8 +215,8 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="lx-faq">
-        <div className="lx-section-title" style={{textAlign:'center'}}>Frequently Asked Questions</div>
-        <div className="lx-faq-list">
+        <div className="lx-section-title lx-animate" style={{textAlign:'center'}}>Frequently Asked Questions</div>
+        <div className="lx-faq-list lx-stagger">
           {[
             { q: "Is the certificate valid for jobs?", a: "Yes. Every certificate has a unique verifiable ID that employers can check at laximotech.ai/verify. It is shareable on LinkedIn." },
             { q: "Do I need prior coding experience?", a: "No. We have courses starting from absolute zero — even for ages 6+. Each course clearly states its prerequisite." },
