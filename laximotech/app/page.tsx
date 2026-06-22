@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useScrollAnimation } from "./hooks/useScrollAnimation";
 
 export default function Home() {
   const [courses, setCourses] = useState<any[]>([]);

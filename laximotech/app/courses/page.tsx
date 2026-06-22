@@ -11,7 +11,24 @@ export default function CoursesPage() {
     const [activeCategory, setActiveCategory] = useState("All");
     const [search, setSearch] = useState("");
     const [user, setUser] = useState<any>(null);
-    useScrollAnimation();
+    useEffect(() => {
+        if (filtered.length > 0) {
+            const els = document.querySelectorAll(".lx-animate, .lx-stagger");
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.05 }
+            );
+            els.forEach((el) => observer.observe(el));
+            return () => observer.disconnect();
+        }
+    }, [filtered]);
 
     useEffect(() => {
         const stored = localStorage.getItem("user");
@@ -74,9 +91,11 @@ export default function CoursesPage() {
             <div className="lx-animate" style={{ background: '#fff', borderBottom: '1px solid #eee', padding: '20px 60px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 {CATEGORIES.map((cat) => (
                     <button key={cat} onClick={() => setActiveCategory(cat)}
-                        style={{ padding: '8px 20px', borderRadius: '20px', border: '2px solid', fontWeight: 600, fontSize: '14px', cursor: 'pointer',
+                        style={{
+                            padding: '8px 20px', borderRadius: '20px', border: '2px solid', fontWeight: 600, fontSize: '14px', cursor: 'pointer',
                             background: activeCategory === cat ? '#1F4E79' : '#fff', color: activeCategory === cat ? '#fff' : '#1F4E79',
-                            borderColor: '#1F4E79', transition: 'all 0.2s' }}>
+                            borderColor: '#1F4E79', transition: 'all 0.2s'
+                        }}>
                         {cat}
                     </button>
                 ))}
